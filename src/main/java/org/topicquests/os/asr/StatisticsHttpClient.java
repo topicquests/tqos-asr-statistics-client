@@ -44,6 +44,7 @@ public class StatisticsHttpClient implements IStatisticsClient {
 		String port = (String)environment.getProperties().get("StatServerPort");
 		CLIENT_ID = (String)environment.getProperties().get("StatServerClientId");
 		SERVER_URL = "http://"+urx+":"+port+"/";
+		environment.logDebug("StatClient- "+SERVER_URL);
 	}
 	
 	/**
@@ -84,7 +85,7 @@ public class StatisticsHttpClient implements IStatisticsClient {
 		String query = buf.toString();
 		try {
 			query = URLEncoder.encode(query, "UTF-8");
-			getQuery(query, result);
+			getQuery(SERVER_URL+query, result);
 		} catch (Exception e) {
 			String x = e.getMessage()+" : "+buf.toString();
 			environment.logError(x, e);
@@ -103,6 +104,7 @@ public class StatisticsHttpClient implements IStatisticsClient {
 		String query = buf.toString();
 		try {
 			query = URLEncoder.encode(query, "UTF-8");
+			getQuery(SERVER_URL+query, result);
 		} catch (Exception e) {
 			String x = e.getMessage()+" : "+buf.toString();
 			environment.logError(x, e);
@@ -121,7 +123,7 @@ public class StatisticsHttpClient implements IStatisticsClient {
 	 * @param result
 	 */
 	void getQuery(String query, IResult result) {
-		
+		environment.logDebug("StatClientQuery "+query);
 		BufferedReader rd = null;
 		HttpURLConnection con = null;
 
