@@ -60,7 +60,7 @@ public class StatisticsHttpClient implements IStatisticsClient {
 		buf.append("\"field\":\""+key+"\","); // the field
 		buf.append("\"clientId\":\""+CLIENT_ID+"\"}");
 		String query = buf.toString();
-		System.out.println("QUERY "+query);
+		//System.out.println("QUERY "+query);
 		try {
 			query = URLEncoder.encode(query, "UTF-8");
 			getQuery(SERVER_URL+query, result);
@@ -123,7 +123,7 @@ public class StatisticsHttpClient implements IStatisticsClient {
 	 * @param result
 	 */
 	void getQuery(String query, IResult result) {
-		environment.logDebug("StatClientQuery "+query);
+		//environment.logDebug("StatClientQuery "+query);
 		BufferedReader rd = null;
 		HttpURLConnection con = null;
 
